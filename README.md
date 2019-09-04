@@ -144,7 +144,7 @@ steps regardless of what system you use.
 
 `git clone https://github.com/FloatingCam/Prusa-Firmware.git `
     
-    docker run -it -v d:\myTest\build:/build --name=prusabuilder --entrypoint /bin/bash floatingcam/prusafirmware
+    docker run -it -v d:\MyPrusa\build:/build --name=prusabuilder --entrypoint /bin/bash floatingcam/prusafirmware
 
 Answer the questions.  The output is put in the build\PF-build-hex directory.
 
@@ -153,16 +153,16 @@ To use the Prusa3D github branch simply **replace** the *PF-build.sh* file with 
 
 **That is it!**
 
-#### Windows
+#### Windows and Docker
 Windows uses CR/LF for line endings and Linux uses just LF.  This creates two problems
 which are both handled by overwriting the PF-build.sh file with the one from my fork.  
 
-When using Git on my fork the *.sh files retain the Linux line endings when downloaded.
-This addresses ./PF-build.sh failing because of the difference in line endings between
-Windows and Linux. 
+I added .getattributes to my fork to change Git to always use Linux line endings on *.sh files.  
 
-Furthermore, when values are extracted from the
-configuration.h file the Windows git copy there is an extra \r (CR) which must be stipped.
+The CR/LF ends up leaving the CR character (\r) in values extracted from configuration.h which
+I strip.  Pulling FP-build.sh from my fork overwrites the file with a version that works with the
+Prusa-Firmware from github.com/Prusa3d/Prusa-Firmware. 
+
 Adding **| sed 's/\r//g'** to the commands eliminates the extra CR.
 ```
 	FW=$(grep --max-count=1 "\bFW_VERSION\b" $SCRIPT_PATH/Firmware/Configuration.h | sed -e's/  */ /g'|cut -d '"' -f2|sed 's/\.//g'|sed 's/\r//g')
