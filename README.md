@@ -142,14 +142,14 @@ steps regardless of what system you use.
 1) create a directory for the build, example: d:\myPrusa\build
 2) within the build directory
 
-`git clone https://github.com/FloatingCameras/Prusa-Firmware.git `
+`git clone https://github.com/FloatingCam/Prusa-Firmware.git `
     
     docker run -it -v d:\myTest\build:/build --name=prusabuilder --entrypoint /bin/bash floatingcam/prusafirmware
 
 Answer the questions.  The output is put in the build\PF-build-hex directory.
 
 ### Using Prusa3d/Prusa-Firmware
-To use the Prusa3D github branch simply **replace** the *PF-build.sh* file with [the one from FloatingCam/Prusa-Firmware](https://github.com/FloatingCameras/Prusa-Firmware/blob/MK3/PF-build.sh).
+To use the Prusa3D github branch simply **replace** the *PF-build.sh* file with [the one from FloatingCam/Prusa-Firmware](https://github.com/FloatingCam/Prusa-Firmware/blob/MK3/PF-build.sh).
 
 **That is it!**
 
